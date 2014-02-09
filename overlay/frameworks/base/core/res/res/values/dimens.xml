@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-/* //device/apps/common/assets/res/any/dimens.xml
 **
 ** Copyright 2006, The Android Open Source Project
 **
@@ -17,7 +16,8 @@
 ** limitations under the License.
 */
 -->
-<resources>
-    <!-- Pie service: Thickness of the active trigger fields around the screen border -->
-<!--    <dimen name="pie_trigger_thickness">10dp</dimen> -->
+<resources> 
+<!-- EdgeGesture service: Thickness of the active trigger fields around the screen border -->
+    <dimen name="edge_gesture_trigger_thickness">20dp</dimen>
+
 </resources>
