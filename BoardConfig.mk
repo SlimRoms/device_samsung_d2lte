@@ -32,6 +32,7 @@ BOARD_KERNEL_BASE           := 0x80200000
 BOARD_MKBOOTIMG_ARGS        := --ramdisk_offset 0x01300000
 BOARD_KERNEL_PAGESIZE       := 2048
 TARGET_KERNEL_CONFIG        := cyanogen_d2_defconfig
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := linaro-4.7-13.04/bin/arm-linux-gnueabihf-
 
 TARGET_BOOTLOADER_BOARD_NAME := MSM8960
 
@@ -66,7 +67,7 @@ COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_BSP
 
 # Vendor Init
 TARGET_UNIFIED_DEVICE := true
-TARGET_INIT_VENDOR_LIB := libinit_msm
+TARGET_INIT_VENDOR_LIB := libinit_d2lte
 TARGET_LIBINIT_DEFINES_FILE := device/samsung/d2lte/init/init_d2lte.c
 
 # bluetooth

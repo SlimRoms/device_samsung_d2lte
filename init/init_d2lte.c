@@ -34,9 +34,7 @@
 #include "log.h"
 #include "util.h"
 
-#include "init_msm.h"
-
-void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *board_type)
+void vendor_load_properties()
 {
     char platform[PROP_VALUE_MAX];
     char bootloader[PROP_VALUE_MAX];
@@ -44,12 +42,8 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
     char devicename[PROP_VALUE_MAX];
     int rc;
 
-    UNUSED(msm_id);
-    UNUSED(msm_ver);
-    UNUSED(board_type);
-
     rc = property_get("ro.board.platform", platform);
-    if (!rc || !ISMATCH(platform, ANDROID_TARGET))
+    if (!rc || strncmp(platform, ANDROID_TARGET, PROP_VALUE_MAX))
         return;
 
     property_get("ro.bootloader", bootloader);
@@ -100,7 +94,6 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.cdma.home.operator.numeric", "311660");
         property_set("telephony.lteOnCdmaDevice", "1");
         property_set("ro.telephony.default_network", "8");
-        property_set("ro.telephony.default_cdma_sub", "0");
     } else if (strstr(bootloader, "L710")) {
         /* d2spr */
         property_set("ro.build.fingerprint", "samsung/d2spr/d2spr:4.3/JSS15J/L710VPUCMK3:user/release-keys");
@@ -145,6 +138,5 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
         property_set("ro.telephony.default_network", "10");
     }
     property_get("ro.product.device", device);
-    strlcpy(devicename, device, sizeof(devicename));
-    ERROR("Found bootloader id %s setting build properties for %s device\n", bootloader, devicename);
+    ERROR("Found bootloader id %s setting build properties for %s device\n", bootloader, device);
 }
