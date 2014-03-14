@@ -136,6 +136,16 @@ void vendor_load_properties()
         property_set("ro.telephony.default_network", "8");
         property_set("telephony.sms.pseudo_multipart", "1");
         property_set("ro.telephony.default_cdma_sub", "0");
+    } else if (strstr(bootloader, "L710")) {
+        /* d2spi */
+        property_set("ro.build.fingerprint", "samsung/d2spi/d2spi:4.1.2/JZO54K/L710WWAMD5:user/release-keys");
+        property_set("ro.build.description", "d2spi-user 4.1.2 JZO54K L710WWAMD5 release-keys");
+        property_set("ro.product.model", "SCH-L710");
+        property_set("ro.product.device", "d2spi");
+        property_set("ro.cdma.home.operator.alpha", "C Spire");
+        property_set("ro.cdma.home.operator.numeric", "311230");
+        property_set("telephony.lteOnCdmaDevice", "1");
+        property_set("ro.telephony.default_network", "8");
     } else if (strstr(bootloader, "I535")) {
         /* d2vzw */
         property_set("ro.build.fingerprint", "Verizon/d2vzw/d2vzw:4.3/JSS15J/I535VRUCML1:user/release-keys");
@@ -151,3 +161,4 @@ void vendor_load_properties()
     property_get("ro.product.device", device);
     ERROR("Found bootloader id %s setting build properties for %s device\n", bootloader, device);
 }
+
