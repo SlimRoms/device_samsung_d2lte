@@ -86,15 +86,11 @@ void vendor_load_properties()
         property_set("ro.ril.enable.dcm.feature", "1");
     }  else if (strstr(bootloader, "R530M")) {
         /* d2mtr */
-        cdma_properties("0", "8", "311660", "MetroPCS", "0");
+        cdma_properties("1", "8", "311660", "MetroPCS", "1");
         property_set("ro.build.fingerprint", "samsung/d2mtr/d2mtr:4.1.2/JZO54K/R530MVQAMF2:user/release-keys");
         property_set("ro.build.description", "d2mtr-user 4.1.2 JZO54K R530MVQAMF2 release-keys");
         property_set("ro.product.model", "SCH-R530M");
         property_set("ro.product.device", "d2mtr");
-        property_set("ro.cdma.home.operator.alpha", "MetroPCS");
-        property_set("ro.cdma.home.operator.numeric", "311660");
-        property_set("telephony.lteOnCdmaDevice", "1");
-        property_set("ro.telephony.default_network", "8");
     } else if (strstr(bootloader, "L710")) {
         /* d2spr and d2spi */
         cdma_properties("1", "8", "310120", "Sprint", "1");
