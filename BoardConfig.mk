@@ -96,9 +96,8 @@ TARGET_NEED_DISABLE_FACE_DETECTION := true
 # Needed for blobs
 COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 
-# Audio
+# Separate audio devices for VOIP
 BOARD_USES_SEPERATED_VOIP := true
-BOARD_HAVE_NEW_QCOM_CSDCLIENT := true
 
 ifeq ($(filter cm_apexqtmo cm_expressatt cm_d2dcm,$(TARGET_PRODUCT)),)
 # Assert

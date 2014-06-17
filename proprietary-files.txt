@@ -1,24 +1,23 @@
 # Bins
 bin/mpdecision
-bin/radish
+
+# Thermal
 bin/thermald
 
 # Bluetooth firmware
-vendor/firmware/bcm4334.hcd
-vendor/firmware/bcm4334_murata.hcd
-vendor/firmware/bcm4334_semco.hcd
+bin/bcm4334.hcd
+bin/bcm4334_murata.hcd
+bin/bcm4334_semco.hcd
 
 # Audio
 lib/libacdbloader.so
 lib/libaudcal.so
-lib/libcsd-client.so
 
 # mmparser extended
 lib/libExtendedExtractor.so
 lib/libmmparser.so
 lib/libmmosal.so
 lib/libdivxdrm.so
-lib/libdivxdrmdecrypt.so
 
 # Adreno GPU (Available on Nexus 4)
 lib/egl/eglsubAndroid.so
@@ -144,7 +143,7 @@ cameradata/datapattern_420sp.yuv
 cameradata/datapattern_front_420sp.yuv
 
 # General
-vendor/lib/libdiag.so
+lib/libdiag.so
 
 # Wi-Fi
 etc/wifi/bcmdhd_apsta.bin_b2
@@ -159,6 +158,8 @@ etc/wifi/nvram_net.txt
 etc/wifi/nvram_net.txt_murata
 etc/wifi/nvram_net.txt_murata_b2
 etc/wifi/nvram_net.txt:etc/wifi/nvram_net.txt_semcosh
+etc/wifi/wpa_supplicant.conf
+
 
 # Perf
 lib/libqc-opt.so
