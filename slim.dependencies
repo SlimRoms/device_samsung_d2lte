@@ -10,11 +10,6 @@
         "branch": "kk4.4"
       },
       {
-        "repository": "SlimRoms/proprietary_vendor_samsung",
-        "target_path": "vendor/samsung",
-        "branch": "kk4.4"
-      },
-      {
         "repository": "CyanogenMod/android_kernel_samsung_d2", 
       "target_path": "kernel/samsung/d2",
       "branch": "cm-11.0"
