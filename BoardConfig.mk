@@ -37,8 +37,7 @@ TARGET_KERNEL_CUSTOM_TOOLCHAIN := linaro-4.7-13.04/bin/arm-linux-gnueabihf-
 TARGET_BOOTLOADER_BOARD_NAME := MSM8960
 
 # WiFi module
-WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/dhd.ko"
-WIFI_DRIVER_MODULE_NAME := "dhd"
+WIFI_DRIVER_FW_PATH_P2P     :=
 
 # Adreno configuration
 BOARD_EGL_CFG := device/samsung/d2lte/configs/egl.cfg
