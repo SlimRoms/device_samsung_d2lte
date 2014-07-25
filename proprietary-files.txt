@@ -76,10 +76,6 @@ lib/libomission_avoidance.so
 lib/libfactoryutil.so
 blobs/r530/lib/libril-qc-qmi-1.so
 blobs/r530/lib/libril.so
-blobs/cdma/lib/libril-qc-qmi-1.so
-blobs/cdma/lib/libril.so
-blobs/r530/lib/libril-qc-qmi-1.so
-blobs/r530/lib/libril.so
 blobs/spr/lib/libril-qc-qmi-1.so
 blobs/spr/lib/libril.so
 blobs/vzw/lib/libril-qc-qmi-1.so
