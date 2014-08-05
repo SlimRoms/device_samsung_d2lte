@@ -63,6 +63,43 @@ on boot
     write /sys/devices/i2c-3/3-005b/update_fw 1
     start qcamerasvr
 
+################################################################
+#Additional On Boot Writes to Dalvik library to Tweak for tighter Garbage collection and Swap usage.
+    write /proc/sys/vm/dirty_background_ratio 60	# the num of pages when the kernel flusher threads will start writing.
+    write /proc/sys/vm/dirty_expire_centisecs 3000	# Duration before the dirty pages become due.
+#    write /proc/sys/vm/dirty_ratio 70			# Not needed since there's no Swap. But just in case we turn swap back on.
+    write /proc/sys/vm/dirty_writeback_centisecs 20000	# Delay before dirty pages are written to the Disk.
+    write /proc/sys/vm/oom_kill_allocating_task 1	# Turn this on. It avoids a full task list scan for the OOM Killer.
+    write /proc/sys/vm/overcommit_memory 0		# Kernel will NOT pretend that there's enough memory as Swap is turned off.
+    write /proc/sys/vm/overcommit_ratio 0		# The total ram can't exceed swap size + this percent * RAM. Doesn't affect unless overcommit_memory=2
+    write /proc/sys/vm/panic_on_oom 0			# Don't want kernel to panick and cause freeze and reboot.
+    write /proc/sys/vm/swappiness 0			# Don't need Swap. Otherwise set to 10 in case of issues.
+    write /proc/sys/vm/vfs_cache_pressure 50		# This percent controls kernel reclaim of memory used to cache dir and inode objects.
+################################################################
+#Further Mods to TCP stack
+
+    write /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts 1	# This deactivates automatic answers to ICMP broadcasts.
+    write /proc/sys/net/ipv4/tcp_congestion_control reno	# Enable TCP Congestion control. Dunno if lp Algorithm is supported. :(
+    write /proc/sys/net/ipv4/tcp_foo 1				#
+    write /proc/sys/net/ipv4/tcp_frto 2				# Since we have enabled SACK otherwise set to 1.
+    write /proc/sys/net/ipv4/tcp_low_latency 0			# Prefer more throughput over latency. If Data connection suffers, set to 1.
+    write /proc/sys/vm/tcp_dsack 1				# Duplicate SACK, tells the transmitter when a packet was received twice.
+    write /proc/sys/vm/tcp_fack 1				# Forward Acknowledgment, deals a bit with congestion.
+    write /proc/sys/vm/tcp_fin_timeout 30			# Don't keep packets around for long.
+    write /proc/sys/vm/tcp_keepalive_intvl 60			# Interval between Session Keep Alive Probes.
+    write /proc/sys/vm/tcp_keepalive_probes 5			# Number of probes to send before connection is marked dead.
+    write /proc/sys/vm/tcp_keepalive_time 300			# Wait 5 minutes before sending Keepalive Probe.
+    write /proc/sys/vm/tcp_low_latency 1			# Turn off TCP PreQueue.
+    write /proc/sys/vm/tcp_moderate_rcvbuf 1	# Turn on AutoTune. The receiver buffer size and TCP window size is dynamically updated.
+    write /proc/sys/vm/tcp_sack 1				# Allows for higher delay over H+ Data Connection.
+    write /proc/sys/vm/tcp_slow_start_after_idle 0		# Set Window size to default for new and current connection.
+    write /proc/sys/vm/tcp_timestamps 1				# Turn on timestamps as we turned on tcp_tw_reuse. Avoid tcp collision
+    write /proc/sys/vm/tcp_tw_reuse 1				# Reuse packets in Time_Wait state.
+    write /proc/sys/vm/tcp_window_scaling 1			# Force Window scaling on if it was off.
+    write /proc/sys/net/ipv4/tcp_rmem 8192 87380 16777216 	# Increase autotuning TCP Read buffer limit.
+    write /proc/sys/net/ipv4/tcp_wmem 8192 65536 16777216 	# Increase autotuning TCP Write buffer limit.
+#####################################################################
+
 on post-fs-data
     mkdir /data/tombstones 0771 system system
     mkdir /tombstones/modem 0771 system system
@@ -258,7 +295,7 @@ on post-fs-data
     chown radio system /sys/class/sec/sec_key/wakeup_keys
 
     # Define TCP buffer sizes for various networks
-    #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
+    #   				ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
     setprop net.tcp.buffersize.default 4096,87380,704512,4096,16384,110208
     setprop net.tcp.buffersize.wifi    524288,1048576,2097152,262144,524288,1048576
     setprop net.tcp.buffersize.lte     524288,1048576,2560000,524288,1048576,2560000
