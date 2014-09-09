@@ -23,6 +23,8 @@
 # inherit from common msm8960
 -include device/samsung/msm8960-common/BoardConfigCommon.mk
 
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/d2lte/include
+
 # Assert
 TARGET_OTA_ASSERT_DEVICE := d2att,d2spr,d2spi,d2tfnspr,d2tmo,d2cri,d2mtr,d2usc,d2vmu,d2vzw,d2lte,d2can
 
@@ -52,6 +54,13 @@ TARGET_ADD_ISO_MODE_1600 := true
 TARGET_NEED_CAMERA_ZSL := true
 TARGET_NEED_EXPOSURE_HACK := true
 TARGET_NEED_SAMSUNG_CAMERA_MODE := true
+
+# The "new" GPS is really the old GPS, override it.
+BOARD_HAVE_NEW_QC_GPS :=
+TARGET_PROVIDES_GPS_LOC_API := true
+
+# We don't use old-ass RPC
+TARGET_NO_RPC := true
 
 # Wifi
 BOARD_WLAN_DEVICE := bcmdhd
