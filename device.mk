@@ -69,7 +69,7 @@ PRODUCT_COPY_FILES += \
     device/samsung/d2lte/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
 PRODUCT_PACKAGES += \
-    libnetcmdiface \
+    libnetcmdiface
 
 # GalaxyS3Settings
 PRODUCT_PACKAGES += \

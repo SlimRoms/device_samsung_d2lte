@@ -62,6 +62,9 @@ TARGET_PROVIDES_GPS_LOC_API := true
 # We don't use old-ass RPC
 TARGET_NO_RPC := true
 
+# RIL
+BOARD_RIL_CLASS := ../../../device/samsung/d2lte/ril
+
 # Wifi
 BOARD_WLAN_DEVICE := bcmdhd
 BOARD_HAVE_SAMSUNG_WIFI := true
