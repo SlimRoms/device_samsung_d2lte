@@ -10,9 +10,9 @@
         "branch": "kk4.4"
       },
       {
-        "repository": "CyanogenMod/android_kernel_samsung_d2", 
+        "repository": "SlimRoms/kernel_samsung_d2", 
       "target_path": "kernel/samsung/d2",
-      "branch": "cm-11.0"
+      "branch": "lp5.1"
       },
       {
       "repository": "SlimRoms/hardware_qcom_display-caf",
